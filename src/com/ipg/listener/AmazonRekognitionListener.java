@@ -1,8 +1,3 @@
-/**
- * @author Jeewan Kadangamage
- *
- * 
- */
 package com.ipg.listener;
 
 import javax.servlet.ServletContext;
@@ -17,6 +12,12 @@ import com.amazonaws.auth.profile.ProfileCredentialsProvider;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.rekognition.AmazonRekognition;
 import com.amazonaws.services.rekognition.AmazonRekognitionClientBuilder;
+
+/**
+ * @author Jeewan Kadangamage
+ *
+ * 
+ */
 
 /**
  * Application Lifecycle Listener implementation class AmazonRekognitionListener

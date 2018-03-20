@@ -19,8 +19,15 @@ import com.amazonaws.services.rekognition.model.DetectTextResult;
 import com.amazonaws.services.rekognition.model.Image;
 import com.amazonaws.services.rekognition.model.S3Object;
 import com.amazonaws.services.rekognition.model.TextDetection;
+import com.amazonaws.services.s3.model.PutObjectResult;
 import com.google.gson.Gson;
 import com.ipg.listener.AmazonRekognitionListener;
+import com.ipg.util.AmazonS3UploaderUtil;
+/**
+ * @author Jeewan Kadangamage
+ *
+ * 
+ */
 
 /**
  * Servlet implementation class TextRecognitionServlet
@@ -53,7 +60,8 @@ public class TextRecognitionServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String photo = "uniid.jpg";
+		//String photo = "uniid.jpg";
+		String imageName = AmazonS3UploaderUtil.uploadToAmazonS3Bucket(request);
 		ServletContext context = request.getSession().getServletContext();
 		String bucket = AmazonRekognitionListener.getAmazonS3Bucket(context);
 		AmazonRekognition rekognitionClient = AmazonRekognitionListener.getRekognitionClient(context);
@@ -61,27 +69,19 @@ public class TextRecognitionServlet extends HttpServlet {
 		
 		//Send the request to Amazon API to detect text
 		DetectTextRequest textDetectRequest = new DetectTextRequest()
-				.withImage(new Image().withS3Object(new S3Object().withName(photo).withBucket(bucket)));
+				.withImage(new Image().withS3Object(new S3Object().withName(imageName).withBucket(bucket)));
 
 		try {
+			//get the responce list
 			DetectTextResult result = rekognitionClient.detectText(textDetectRequest);
 			List<TextDetection> textDetections = result.getTextDetections();
 			
+			//convert to json
 			String json = new Gson().toJson(textDetections);
 			response.setContentType("application/json");
 			response.setCharacterEncoding("UTF-8");
 			out.print(json);
 			out.flush();
-			/*System.out.println("Detected lines and words for " + photo);
-			for (TextDetection text : textDetections) {
-
-				System.out.println("Detected: " + text.getDetectedText());
-				System.out.println("Confidence: " + text.getConfidence().toString());
-				System.out.println("Id : " + text.getId());
-				System.out.println("Parent Id: " + text.getParentId());
-				System.out.println("Type: " + text.getType());
-				System.out.println();
-			}*/
 		} catch (AmazonRekognitionException e) {
 			e.printStackTrace();
 		}
