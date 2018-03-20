@@ -42,8 +42,10 @@ public class AmazonS3UploaderUtil {
 		try {
 			System.out.println("Uploading a new object to S3 from a file\n");
 			imagePutObjectResult = s3client.putObject(new PutObjectRequest(bucketName, file.getName(), file));
-			//Jeewan: get the url to image in the Amazon S3
-			request.getSession().setAttribute("image-url", s3client
+			//Jeewan: set the url to image in the Amazon S3
+			System.out.println("jeejkl"+s3client
+					.getUrl(AmazonRekognitionListener.getAmazonS3Bucket(request.getServletContext()), file.getName()));
+			request.getSession().setAttribute("imageurl", s3client
 					.getUrl(AmazonRekognitionListener.getAmazonS3Bucket(request.getServletContext()), file.getName()));
 		} catch (AmazonServiceException ase) {
 			System.out.println("Caught an AmazonServiceException, which " + "means your request made it "

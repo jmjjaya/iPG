@@ -5,12 +5,18 @@ import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 import com.amazonaws.services.rekognition.AmazonRekognition;
 import com.amazonaws.services.rekognition.model.AmazonRekognitionException;
@@ -23,6 +29,7 @@ import com.amazonaws.services.s3.model.PutObjectResult;
 import com.google.gson.Gson;
 import com.ipg.listener.AmazonRekognitionListener;
 import com.ipg.util.AmazonS3UploaderUtil;
+
 /**
  * @author Jeewan Kadangamage
  *
@@ -60,28 +67,34 @@ public class TextRecognitionServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		//String photo = "uniid.jpg";
 		String imageName = AmazonS3UploaderUtil.uploadToAmazonS3Bucket(request);
 		ServletContext context = request.getSession().getServletContext();
 		String bucket = AmazonRekognitionListener.getAmazonS3Bucket(context);
 		AmazonRekognition rekognitionClient = AmazonRekognitionListener.getRekognitionClient(context);
-		PrintWriter out = response.getWriter();
-		
-		//Send the request to Amazon API to detect text
+		String detectedText = "";
+		// PrintWriter out = response.getWriter();
+
+		// Send the request to Amazon API to detect text
 		DetectTextRequest textDetectRequest = new DetectTextRequest()
 				.withImage(new Image().withS3Object(new S3Object().withName(imageName).withBucket(bucket)));
 
 		try {
-			//get the responce list
+			// get the responce list
 			DetectTextResult result = rekognitionClient.detectText(textDetectRequest);
 			List<TextDetection> textDetections = result.getTextDetections();
-			
-			//convert to json
-			String json = new Gson().toJson(textDetections);
-			response.setContentType("application/json");
-			response.setCharacterEncoding("UTF-8");
-			out.print(json);
-			out.flush();
+
+			for (TextDetection item : textDetections) {
+				detectedText += item.getDetectedText() + " ";
+			}
+			System.out.println(detectedText);
+			request.getSession().setAttribute("textdetjson", detectedText);
+
+			// response.setContentType("application/json");
+			// response.setCharacterEncoding("UTF-8");
+			// out.print(json);
+			// out.flush();
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/textdetection.jsp");
+			dispatcher.forward(request, response);
 		} catch (AmazonRekognitionException e) {
 			e.printStackTrace();
 		}
