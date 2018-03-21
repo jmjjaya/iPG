@@ -28,6 +28,7 @@ import com.amazonaws.services.rekognition.model.TextDetection;
 import com.amazonaws.services.s3.model.PutObjectResult;
 import com.google.gson.Gson;
 import com.ipg.listener.AmazonRekognitionListener;
+import com.ipg.listener.AmazonS3Listener;
 import com.ipg.util.AmazonS3UploaderUtil;
 
 /**
@@ -69,7 +70,7 @@ public class TextRecognitionServlet extends HttpServlet {
 			throws ServletException, IOException {
 		String imageName = AmazonS3UploaderUtil.uploadToAmazonS3Bucket(request);
 		ServletContext context = request.getSession().getServletContext();
-		String bucket = AmazonRekognitionListener.getAmazonS3Bucket(context);
+		String bucket = AmazonS3Listener.getAmazonS3Bucket(context);
 		AmazonRekognition rekognitionClient = AmazonRekognitionListener.getRekognitionClient(context);
 		String detectedText = "";
 		// PrintWriter out = response.getWriter();

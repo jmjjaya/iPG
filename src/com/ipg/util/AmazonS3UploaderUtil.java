@@ -7,6 +7,7 @@ import java.io.File;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.fileupload.FileItem;
@@ -22,6 +23,7 @@ import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.amazonaws.services.s3.model.PutObjectResult;
 import com.ipg.listener.AmazonRekognitionListener;
+import com.ipg.listener.AmazonS3Listener;
 
 /**
  * @author jeewan Kadangamage
@@ -35,18 +37,21 @@ public class AmazonS3UploaderUtil {
 	private static final int MAX_REQUEST_SIZE = 1024 * 1024 * 50; // 50MB
 
 	public static String uploadToAmazonS3Bucket(HttpServletRequest request) {
-		String bucketName = AmazonRekognitionListener.getAmazonS3Bucket(request.getServletContext());
+		String bucketName = AmazonS3Listener.getAmazonS3Bucket(request.getServletContext());
 		File file = retrieveFilesFromRequestBody(request);
-		AmazonS3 s3client = new AmazonS3Client(new ProfileCredentialsProvider());
+		ServletContext context = request.getSession().getServletContext();
+		AmazonS3 s3client = AmazonS3Listener.getAmazonS3Cliet(context);
 		PutObjectResult imagePutObjectResult = null;
+		
 		try {
 			System.out.println("Uploading a new object to S3 from a file\n");
 			imagePutObjectResult = s3client.putObject(new PutObjectRequest(bucketName, file.getName(), file));
-			//Jeewan: set the url to image in the Amazon S3
-			System.out.println("jeejkl"+s3client
-					.getUrl(AmazonRekognitionListener.getAmazonS3Bucket(request.getServletContext()), file.getName()));
-			request.getSession().setAttribute("imageurl", s3client
-					.getUrl(AmazonRekognitionListener.getAmazonS3Bucket(request.getServletContext()), file.getName()));
+			
+			// Jeewan: set the url to image in the Amazon S3
+			System.out.println("jeejkl"
+					+ s3client.getUrl(AmazonS3Listener.getAmazonS3Bucket(context), file.getName()));
+			request.getSession().setAttribute("imageurl",
+					s3client.getUrl(AmazonS3Listener.getAmazonS3Bucket(context), file.getName()));
 		} catch (AmazonServiceException ase) {
 			System.out.println("Caught an AmazonServiceException, which " + "means your request made it "
 					+ "to Amazon S3, but was rejected with an error response" + " for some reason.");

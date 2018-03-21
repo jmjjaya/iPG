@@ -46,7 +46,7 @@ public class AmazonRekognitionListener implements ServletContextListener {
 		// TODO Auto-generated method stub
 		ServletContext context = arg0.getServletContext();
 		setRekognitionClient(context);
-		setAmazonS3Bucket(context);
+		
 	}
 
 	/*
@@ -72,22 +72,9 @@ public class AmazonRekognitionListener implements ServletContextListener {
 		context.setAttribute("rekognition-client", rekognitionClient);
 	}
 
-	/*
-	 * Jeewan: Initializing Amazon S3 bucket 'amazon-S3-bucket'
-	 */
-	public static void setAmazonS3Bucket(ServletContext context) {
-		context.setAttribute("amazon-S3-bucket", "ipgjmjjaya");
-	}
-	
 	/*Get rekognition-client
 	 * */
 	public static AmazonRekognition getRekognitionClient(ServletContext context) {
 		return (AmazonRekognition)context.getAttribute("rekognition-client");
-	}
-	
-	/*
-	 * */
-	public static String getAmazonS3Bucket(ServletContext context) {
-		return (String)context.getAttribute("amazon-S3-bucket");
 	}
 }

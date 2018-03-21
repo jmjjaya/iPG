@@ -1,18 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
-  <display-name>iPG</display-name>
-  <listener>
-    <listener-class>com.ipg.listener.AmazonRekognitionListener</listener-class>
-  </listener>
-  <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
-  </welcome-file-list>
-  <servlet>
-    <servlet-name>amazon</servlet-name>
-    <servlet-class>com.ipg.servlet.CloudAPIConnectorServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>amazon</servlet-name>
-    <url-pattern>/CloudAPIConnectorServlet</url-pattern>
-  </servlet-mapping>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	id="WebApp_ID" version="3.1">
+	<display-name>iPG</display-name>
+	<listener>
+		<listener-class>com.ipg.listener.AmazonS3Listener</listener-class>
+	</listener>
+	<listener>
+		<listener-class>com.ipg.listener.AmazonRekognitionListener</listener-class>
+	</listener>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+	</welcome-file-list>
+	<servlet>
+		<servlet-name>amazon</servlet-name>
+		<servlet-class>com.ipg.servlet.CloudAPIConnectorServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>amazon</servlet-name>
+		<url-pattern>/CloudAPIConnectorServlet</url-pattern>
+	</servlet-mapping>
 </web-app>

@@ -18,6 +18,7 @@ import com.amazonaws.services.rekognition.model.RecognizeCelebritiesRequest;
 import com.amazonaws.services.rekognition.model.RecognizeCelebritiesResult;
 import com.amazonaws.services.rekognition.model.S3Object;
 import com.ipg.listener.AmazonRekognitionListener;
+import com.ipg.listener.AmazonS3Listener;
 import com.ipg.util.AmazonS3UploaderUtil;
 
 /**
@@ -49,7 +50,7 @@ public class CelebrityRecognitionServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String imageName = AmazonS3UploaderUtil.uploadToAmazonS3Bucket(request);
 		ServletContext context = request.getSession().getServletContext();
-		String bucket = AmazonRekognitionListener.getAmazonS3Bucket(context);
+		String bucket = AmazonS3Listener.getAmazonS3Bucket(context);
 		AmazonRekognition rekognitionClient = AmazonRekognitionListener.getRekognitionClient(context);
 		
 		RecognizeCelebritiesRequest celebDectRequest = new RecognizeCelebritiesRequest()
