@@ -13,11 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.cloudinary.Cloudinary;
-
-
-import com.cloudinary.*;
-import com.cloudinary.utils.ObjectUtils;
+import com.ipg.util.DetectObject;
 
 /**
  * Servlet implementation class VehicleRecognitionServlet

@@ -2,7 +2,6 @@ package com.ipg.servlet;
 
 import java.io.File;
 import java.io.IOException;
-import com.cloudinary.*;
 
 import java.io.PrintWriter;
 import java.util.Arrays;
@@ -18,11 +17,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import com.cloudinary.Cloudinary;
 
 
-import com.cloudinary.*;
-import com.cloudinary.utils.ObjectUtils;
+
+
+import com.ipg.util.DetectObject;
 
 
 
