@@ -1,6 +1,7 @@
 package com.ipg.servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -52,11 +53,14 @@ public class CelebrityRecognitionServlet extends HttpServlet {
 		ServletContext context = request.getSession().getServletContext();
 		String bucket = AmazonS3Listener.getAmazonS3Bucket(context);
 		AmazonRekognition rekognitionClient = AmazonRekognitionListener.getRekognitionClient(context);
-		
+		PrintWriter out = response.getWriter();
+		String nameList = "";
 		RecognizeCelebritiesRequest celebDectRequest = new RecognizeCelebritiesRequest()
 				.withImage(new Image().withS3Object(new S3Object().withName(imageName).withBucket(bucket)));
 		
 		RecognizeCelebritiesResult result= rekognitionClient.recognizeCelebrities(celebDectRequest);
+		
+		
 		
 		////////////////////////////////////////////
 		//Display recognized celebrity information
@@ -66,6 +70,7 @@ public class CelebrityRecognitionServlet extends HttpServlet {
 
         for (Celebrity celebrity: celebs) {
             System.out.println("Celebrity recognized: " + celebrity.getName());
+            nameList += celebrity.getName() + " ";
             System.out.println("Celebrity ID: " + celebrity.getId());
             BoundingBox boundingBox=celebrity.getFace().getBoundingBox();
             System.out.println("position: " +
@@ -78,6 +83,8 @@ public class CelebrityRecognitionServlet extends HttpServlet {
             System.out.println();
          }
          System.out.println(result.getUnrecognizedFaces().size() + " face(s) were unrecognized.");
+         out.print(nameList);
+ 	     out.flush();
      }
 		///////////////////////////////////////////
 }

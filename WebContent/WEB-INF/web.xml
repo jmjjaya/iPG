@@ -11,7 +11,7 @@
 		<listener-class>com.ipg.listener.AmazonRekognitionListener</listener-class>
 	</listener>
 	<welcome-file-list>
-		<welcome-file>index.html</welcome-file>
+		<welcome-file>LoginUserName.jsp</welcome-file>
 	</welcome-file-list>
 	<servlet>
 		<servlet-name>amazon</servlet-name>

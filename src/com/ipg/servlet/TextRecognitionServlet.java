@@ -13,10 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
+
 
 import com.amazonaws.services.rekognition.AmazonRekognition;
 import com.amazonaws.services.rekognition.model.AmazonRekognitionException;
@@ -73,7 +70,7 @@ public class TextRecognitionServlet extends HttpServlet {
 		String bucket = AmazonS3Listener.getAmazonS3Bucket(context);
 		AmazonRekognition rekognitionClient = AmazonRekognitionListener.getRekognitionClient(context);
 		String detectedText = "";
-		// PrintWriter out = response.getWriter();
+		PrintWriter out = response.getWriter();
 
 		// Send the request to Amazon API to detect text
 		DetectTextRequest textDetectRequest = new DetectTextRequest()
@@ -90,12 +87,13 @@ public class TextRecognitionServlet extends HttpServlet {
 			System.out.println(detectedText);
 			request.getSession().setAttribute("textdetjson", detectedText);
 
-			// response.setContentType("application/json");
-			// response.setCharacterEncoding("UTF-8");
-			// out.print(json);
-			// out.flush();
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/textdetection.jsp");
-			dispatcher.forward(request, response);
+			//response.setContentType("application/json");
+		    //response.setCharacterEncoding("UTF-8");
+			
+			out.print(detectedText);
+		    out.flush();
+			//RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/textdetection.jsp");
+			//dispatcher.forward(request, response);
 		} catch (AmazonRekognitionException e) {
 			e.printStackTrace();
 		}
