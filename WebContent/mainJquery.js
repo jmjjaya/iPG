@@ -53,12 +53,23 @@ $(document)
 													processData : false,
 													data : data,
 													success : function(data) {
-														$(
-																"<tr><td>"
-																		+ data
-																		+ "</td></tr>")
-																.appendTo(
-																		"#celebNames");
+														var i =0;
+														$
+																.each(
+																		JSON
+																				.parse(data),
+																		function(
+																				idx,
+																				obj) {
+																			
+																		for (let i = 0; i < obj.length; i++) {
+																			$("<tr><td><a href=\""
+																			+ obj[i].url +"\">"
+																			+  obj[i].Name +"</a></td></tr>")
+																	.appendTo(
+																			"#celebNames");
+																			} 	
+																		});
 													},
 													error : function(e) {
 														alert(e);
@@ -135,7 +146,7 @@ $(document)
 																		function(
 																				idx,
 																				obj) {
-																			
+
 																			if (idx === 'objects') {
 
 																				$
@@ -144,19 +155,18 @@ $(document)
 																								function(
 																										idx,
 																										obj) {
-																										$(
-																												"<tr><td>"
-																														+ obj.vehicleAnnotation.attributes.system.make.name
-																														+ "</td><td>"
-																														+ obj.vehicleAnnotation.attributes.system.model.name
-																														+ "</td> <td>"
-																														+ obj.vehicleAnnotation.attributes.system.color.name
-																														+ "</td><td>"
-																														+ obj.vehicleAnnotation.attributes.system.vehicleType
-																														+ "</td></tr>")
-																												.appendTo(
-																														"#vehicleRec");
-																									
+																									$(
+																											"<tr><td>"
+																													+ obj.vehicleAnnotation.attributes.system.make.name
+																													+ "</td><td>"
+																													+ obj.vehicleAnnotation.attributes.system.model.name
+																													+ "</td> <td>"
+																													+ obj.vehicleAnnotation.attributes.system.color.name
+																													+ "</td><td>"
+																													+ obj.vehicleAnnotation.attributes.system.vehicleType
+																													+ "</td></tr>")
+																											.appendTo(
+																													"#vehicleRec");
 
 																								});
 
