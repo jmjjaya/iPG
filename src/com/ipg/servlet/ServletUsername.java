@@ -40,7 +40,7 @@ public class ServletUsername extends HttpServlet {
 		//Connect to database and check if Username is exist
 		try {;
 			Class.forName("com.mysql.jdbc.Driver");
-			Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/iDB", "root", "rs059822440"); 
+			Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/ipgdb", "root", "admin"); 
 			PreparedStatement ps = c.prepareStatement("select Username from Accounts where Username=?");
 			ps.setString(1, username);
 			ResultSet rs = ps.executeQuery();

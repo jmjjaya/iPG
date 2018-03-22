@@ -12,6 +12,7 @@ import java.util.Map;
 import javax.json.Json;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
+import javax.servlet.http.HttpServletRequest;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
@@ -52,7 +53,7 @@ public class DetectObject {
     }
     
     
-    public String loadFile(String imageurl) throws IOException {
+    public String loadFile(HttpServletRequest request) throws IOException {
     	
     	
     	 Cloudinary cloudinary = new Cloudinary(ObjectUtils.asMap(
@@ -60,7 +61,7 @@ public class DetectObject {
                 "api_key", "887872463762523",
                 "api_secret", "GRZ1_ZDbl9ivRxLyBN3MVAvlPko"));
 
-             	File toUpload = new File(imageurl);
+             	File toUpload = AmazonS3UploaderUtil.retrieveFilesFromRequestBody(request);
              
              Map<String, Object> uploadResult = cloudinary.uploader().upload(toUpload, ObjectUtils.emptyMap());
              String imageurlcloud = (String)uploadResult.get("secure_url");
@@ -68,4 +69,19 @@ public class DetectObject {
              return imageurlcloud;
     }
 
+    public String loadFile1(HttpServletRequest request) throws IOException {
+    	
+    	
+   	 Cloudinary cloudinary = new Cloudinary(ObjectUtils.asMap(
+               "cloud_name", "hiepnguyen",
+               "api_key", "887872463762523",
+               "api_secret", "GRZ1_ZDbl9ivRxLyBN3MVAvlPko"));
+
+            	File toUpload = AmazonS3UploaderUtil.retrieveFilesFromRequestBody(request);
+            
+            Map<String, Object> uploadResult = cloudinary.uploader().upload(toUpload, ObjectUtils.emptyMap());
+            String imageurlcloud = (String)uploadResult.get("secure_url");
+            
+            return imageurlcloud;
+   }
 }

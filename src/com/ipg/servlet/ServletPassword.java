@@ -47,7 +47,7 @@ public class ServletPassword extends HttpServlet {
 		//Connect to database and check if Username and Password are exist
 		try {;
 			Class.forName("com.mysql.jdbc.Driver");
-			Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/iDB", "root", "rs059822440"); 
+			Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/ipgdb", "root", "admin"); 
 			PreparedStatement ps = c.prepareStatement("SELECT Username,Password FROM Accounts WHERE Username=? AND Password=?");
 			ps.setString(1, username);
 			ps.setString(2, password);

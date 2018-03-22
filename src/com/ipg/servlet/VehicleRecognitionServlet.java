@@ -1,6 +1,7 @@
 package com.ipg.servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -37,7 +38,8 @@ public class VehicleRecognitionServlet extends HttpServlet {
 
 		DetectObject data = new DetectObject();
 		String imageUrl = request.getParameter("imagedir");
-		String imageurlcloud = data.loadFile(imageUrl);
+		String imageurlcloud = data.loadFile(request);
+		PrintWriter out = response.getWriter();
 		
         String api = "https://dev.sighthoundapi.com/v1/recognition?objectType=vehicle";
         String accessToken = "BFLjOL9bHHC6ReLdgaqVYfKSZHLC8d8b3Cz4";
@@ -50,11 +52,11 @@ public class VehicleRecognitionServlet extends HttpServlet {
 	        session.setAttribute("vehicle", jsonBody);
 	        session.setAttribute("urlvehicle", imageurlcloud);
 	        
-	        System.out.println(jsonBody);
 	        
-	        RequestDispatcher e =  request.getRequestDispatcher("vehicle.jsp");
-			e.forward(request, response);
-			
+	       // RequestDispatcher e =  request.getRequestDispatcher("vehicle.jsp");
+			//e.forward(request, response);
+	        out.print(jsonBody);
+		    out.flush();
 		          
             System.out.print(jsonBody);
         }   catch (IOException ex) {

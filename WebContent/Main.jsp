@@ -133,16 +133,16 @@
             							<div class="col-xs-3 col-sm-2 col-md-1 col-lg-1">
                 							<img class="img-circle" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=50" alt="User Pic">
             							</div>
-						            <div class="col-xs-8 col-sm-9 col-md-10 col-lg-10">
-						                <strong>Celebrity</strong><br>
-						                <span>Recognize a famous person</span>
-						            </div>
-						            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 dropdown-user" data-for=".Celebrity">
-						                <i class="glyphicon glyphicon-chevron-down text-muted"></i>
-						            </div>
-        							</div>
+							            <div class="col-xs-8 col-sm-9 col-md-10 col-lg-10">
+							                <strong>Celebrity</strong><br>
+							                <span>Recognize a famous person</span>
+							            </div>
+							            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 dropdown-user" data-for=".Celebrity">
+							                <i class="glyphicon glyphicon-chevron-down text-muted"></i>
+							            </div>
+	        							</div>
 						        <div class="row user-infos Celebrity">
-						            <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xs-offset-0 col-sm-offset-0 col-md-offset-1 col-lg-offset-1">
+						            <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10">
 						                <div class="panel panel-primary">
 						                    <div class="panel-heading">
 						                        <h3 class="panel-title">Celebrity</h3>
@@ -150,24 +150,10 @@
 						                    <div class="panel-body">
 						                        <div class="row">
 						                            <div class=" col-md-9 col-lg-9 hidden-xs hidden-sm">
-						                                <strong>Result from JSON</strong><br>
+						                                <br>
 						                                <table class="table table-user-information">
 						                                    <tbody>
-						                                    <tr>
-						                                        <td>AAAAAA:</td>
-						                                        <td>BBBBBB</td>
-						                                    </tr>
-						                                    <tr>
-						                                        <td>AAAAAA:</td>
-						                                        <td>BBBBBB</td>
-						                                    </tr>
-						                                    <tr>
-						                                        <td>AAAAAA:</td>
-						                                        <td>BBBBBB</td>
-						                                    </tr>
-						                                    <tr>
-						                                        <td>AAAAAA:</td>
-						                                        <td>BBBBBB</td>
+						                                    <tr id="celebNames">
 						                                    </tr>
 						                                    </tbody>
 						                                </table>
@@ -200,23 +186,7 @@
 						                            <div class=" col-md-9 col-lg-9 hidden-xs hidden-sm">
 						                                <strong>Result from JSON</strong><br>
 						                                <table class="table table-user-information">
-						                                    <tbody>
-						                                    <tr>
-						                                        <td>AAAAAA:</td>
-						                                        <td>BBBBBB</td>
-						                                    </tr>
-						                                    <tr>
-						                                        <td>AAAAAA:</td>
-						                                        <td>BBBBBB</td>
-						                                    </tr>
-						                                    <tr>
-						                                        <td>AAAAAA:</td>
-						                                        <td>BBBBBB</td>
-						                                    </tr>
-						                                    <tr>
-						                                        <td>AAAAAA:</td>
-						                                        <td>BBBBBB</td>
-						                                    </tr>
+						                                    <tbody id="faceRec">
 						                                    </tbody>
 						                                </table>
 						                            </div>
@@ -246,25 +216,10 @@
 						                    <div class="panel-body">
 						                        <div class="row">
 						                            <div class=" col-md-9 col-lg-9 hidden-xs hidden-sm">
-						                                <strong>Result from JSON</strong><br>
+						                             
 						                                <table class="table table-user-information">
-						                                    <tbody>
-						                                    <tr>
-						                                        <td>AAAAAA:</td>
-						                                        <td>BBBBBB</td>
-						                                    </tr>
-						                                    <tr>
-						                                        <td>AAAAAA:</td>
-						                                        <td>BBBBBB</td>
-						                                    </tr>
-						                                    <tr>
-						                                        <td>AAAAAA:</td>
-						                                        <td>BBBBBB</td>
-						                                    </tr>
-						                                    <tr>
-						                                        <td>AAAAAA:</td>
-						                                        <td>BBBBBB</td>
-						                                    </tr>
+						                                    <tbody id="vehicleRec">
+						                                  
 						                                    </tbody>
 						                                </table>
 						                            </div>
@@ -294,25 +249,10 @@
 						                    <div class="panel-body">
 						                        <div class="row">
 						                            <div class=" col-md-9 col-lg-9 hidden-xs hidden-sm">
-						                                <strong>Result from JSON</strong><br>
+						                                <br>
 						                                <table class="table table-user-information">
 						                                    <tbody>
-						                                    <tr>
-						                                        <td>AAAAAA:</td>
-						                                        <td>BBBBBB</td>
-						                                    </tr>
-						                                    <tr>
-						                                        <td>AAAAAA:</td>
-						                                        <td>BBBBBB</td>
-						                                    </tr>
-						                                    <tr>
-						                                        <td>AAAAAA:</td>
-						                                        <td>BBBBBB</td>
-						                                    </tr>
-						                                    <tr>
-						                                        <td>AAAAAA:</td>
-						                                        <td>BBBBBB</td>
-						                                    </tr>
+						                                    <tr id="detectedText">
 						                                    </tbody>
 						                                </table>
 						                            </div>

@@ -53,8 +53,9 @@ public class FaceRecognitionServlet extends HttpServlet {
 		
 		//System.out.println("1");
 		DetectObject data = new DetectObject();
-		String imageUrl = request.getParameter("imagedir");
-		String imageurlcloud = data.loadFile(imageUrl);
+		PrintWriter out = response.getWriter();
+		String imageurlcloud = data.loadFile(request);
+		//File 
 		
 		
 		   
@@ -70,12 +71,13 @@ public class FaceRecognitionServlet extends HttpServlet {
 		        session.setAttribute("face", jsonBody);
 		        session.setAttribute("urlface", imageurlcloud);
 		        
-		        RequestDispatcher e =  request.getRequestDispatcher("face.jsp");
-				e.forward(request, response);
+		       // RequestDispatcher e =  request.getRequestDispatcher("face.jsp");
+				//e.forward(request, response);
 				
 			   
 				
-		        
+		        out.print(jsonBody);
+			    out.flush();
 	            System.out.print(jsonBody);
 	        }   catch (IOException ex) {
 	            Logger.getLogger(FaceRecognitionServlet.class.getName()).log(Level.SEVERE, null, ex);

@@ -45,7 +45,7 @@ public class ServletRegistration extends HttpServlet {
 		try {
 			;
 			Class.forName("com.mysql.jdbc.Driver");
-			Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/iDB", "root", "rs059822440");
+			Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/ipgdb", "root", "admin");
 
 			PreparedStatement statement = c.prepareStatement("select Username from Accounts where Username=?");
 			statement.setString(1, username);
