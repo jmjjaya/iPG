@@ -84,16 +84,10 @@ public class TextRecognitionServlet extends HttpServlet {
 			for (TextDetection item : textDetections) {
 				detectedText += item.getDetectedText() + " ";
 			}
-			System.out.println(detectedText);
 			request.getSession().setAttribute("textdetjson", detectedText);
-
-			//response.setContentType("application/json");
-		    //response.setCharacterEncoding("UTF-8");
 			
 			out.print(detectedText);
 		    out.flush();
-			//RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/textdetection.jsp");
-			//dispatcher.forward(request, response);
 		} catch (AmazonRekognitionException e) {
 			e.printStackTrace();
 		}

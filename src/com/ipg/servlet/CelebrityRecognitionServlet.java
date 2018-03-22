@@ -27,7 +27,14 @@ import com.ipg.listener.AmazonS3Listener;
 import com.ipg.util.AmazonS3UploaderUtil;
 
 /**
- * Servlet implementation class CelebrityRecognitionServlet
+ * @author Jeewan Kadangamage
+ *
+ * 
+ */
+
+/**
+ * 
+ * /** Servlet implementation class CelebrityRecognitionServlet
  */
 @WebServlet("/CelebrityRecognitionServlet")
 public class CelebrityRecognitionServlet extends HttpServlet {
@@ -57,6 +64,7 @@ public class CelebrityRecognitionServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 		String imageName = AmazonS3UploaderUtil.uploadToAmazonS3Bucket(request);
 		ServletContext context = request.getSession().getServletContext();
 		String bucket = AmazonS3Listener.getAmazonS3Bucket(context);
@@ -68,22 +76,20 @@ public class CelebrityRecognitionServlet extends HttpServlet {
 
 		RecognizeCelebritiesResult result = rekognitionClient.recognizeCelebrities(celebDectRequest);
 
-		//Jeewan: Convert to Json Object
+		// Jeewan: Convert to Json Object
 		List<Celebrity> celebs = result.getCelebrityFaces();
 		JSONObject celebsJson = new JSONObject();
 		JSONArray allDataArray = new JSONArray();
 
 		for (Celebrity celebrity : celebs) {
-			System.out.println(celebrity.getName());
 			JSONObject celeb = new JSONObject();
 			celeb.put("Name", celebrity.getName());
 			celeb.put("url", celebrity.getUrls().get(0));
 			allDataArray.put(celeb);
-			
 		}
 		System.out.println(allDataArray);
 		System.out.println(celebsJson);
-		out.print(celebsJson.put("celebs",allDataArray).toString());
+		out.print(celebsJson.put("celebs", allDataArray).toString());
 		out.flush();
 	}
 }

@@ -73,13 +73,6 @@ public class AmazonS3UploaderUtil {
 	// http://www.codejava.net/java-ee/servlet/eclipse-file-upload-servlet-with-apache-common-file-upload
 	public static File retrieveFilesFromRequestBody(HttpServletRequest request) {
 
-		// checks if the request actually contains upload file
-		// if (!ServletFileUpload.isMultipartContent(request)) {
-		// PrintWriter writer = response.getWriter();
-		// writer.println("Request does not contain upload data");
-		// writer.flush();
-		// return;
-		// }
 		// configures upload settings
 		DiskFileItemFactory factory = new DiskFileItemFactory();
 		factory.setSizeThreshold(THRESHOLD_SIZE);

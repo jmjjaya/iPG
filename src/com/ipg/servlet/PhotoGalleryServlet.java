@@ -17,7 +17,13 @@ import com.amazonaws.services.s3.model.ListObjectsV2Request;
 import com.amazonaws.services.s3.model.ListObjectsV2Result;
 import com.amazonaws.services.s3.model.S3ObjectSummary;
 import com.ipg.listener.AmazonS3Listener;
+/**
+ * @author Jeewan Kadangamage
+ *
+ * 
+ */
 
+/**
 /**
  * Servlet implementation class PhotoGalleryServlet
  */

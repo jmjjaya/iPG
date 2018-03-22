@@ -7,7 +7,7 @@ $(document)
 					$("#removeImage").click(function() {
 						location.reload();
 					});
-					
+					//on submit send 4 seperate jquery calls to each servlet
 					$("#submitImage")
 							.click(
 									function(event) {
@@ -23,9 +23,6 @@ $(document)
 										event.preventDefault();
 
 										var form = $('#fileUploadForm')[0];
-
-										// var file_data =
-										// $("#filePhoto").prop("files")[0];
 										var data = new FormData(form);
 										// Jeewan:
 										$("#btnSubmit").prop("disabled", true);
