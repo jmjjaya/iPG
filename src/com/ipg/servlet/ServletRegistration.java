@@ -57,9 +57,9 @@ public class ServletRegistration extends HttpServlet {
 				ps.setString(3, email);
 				int rs = ps.executeUpdate();
 				if (rs == 1) {
-					Cookie loginCookie = new Cookie("user",username);
-					loginCookie.setMaxAge(30*60);
-					response.addCookie(loginCookie);
+//					Cookie loginCookie = new Cookie("user",username);
+//					loginCookie.setMaxAge(30*60);
+//					response.addCookie(loginCookie);
 					response.sendRedirect("Main.jsp");
 				}
 			} else {

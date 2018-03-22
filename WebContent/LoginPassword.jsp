@@ -36,7 +36,7 @@
 						}
 					%>
                 	</div>
-                <input type="text" class="form-control" placeholder="Password" name="Password" required autofocus>
+                <input type="password" class="form-control" placeholder="Password" name="Password" required autofocus>
                 <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
                 </form>
             </div>

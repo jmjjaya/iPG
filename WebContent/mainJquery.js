@@ -5,14 +5,21 @@ $(document)
 		.ready(
 				function() {
 					$("#removeImage").click(function() {
-						$('.uploader').hide();
-						$("#submitImage").hide();
-						$("#removeImage").hide();
+						location.reload();
 					});
-
+					
 					$("#submitImage")
 							.click(
 									function(event) {
+										$(".Celebrity").show();
+										$(".Face").show();
+										$(".Vehicle").show();
+										$(".Text").show();
+										
+										$('#detectedText').empty();
+										$('#celebNames').empty();
+										$('#faceRec').empty();
+										$('#vehicleRec').empty();
 										event.preventDefault();
 
 										var form = $('#fileUploadForm')[0];
@@ -33,7 +40,7 @@ $(document)
 													processData : false,
 													data : data,
 													success : function(data) {
-														$("<p>" + data + "</p>")
+														$("<tr><td>" + data + "</td></tr>")
 																.appendTo(
 																		"#detectedText");
 													},
@@ -60,9 +67,9 @@ $(document)
 																				.parse(data),
 																		function(
 																				idx,
-																				obj) {
-																			
+																				obj) {																			
 																		for (let i = 0; i < obj.length; i++) {
+																			console.log(obj[i].url);
 																			$("<tr><td><a href=\""
 																			+ obj[i].url +"\">"
 																			+  obj[i].Name +"</a></td></tr>")

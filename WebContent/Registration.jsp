@@ -24,9 +24,9 @@
 			response.sendRedirect("Main.jsp");
 		}
 	%>
-	<div class="container">
-		<div class="row centered-form" style="margin-top: 250px;">
-			<div class="col-md-6 col-sm-offset-2 col-md-offset-2">
+	<div class="container-fluid">
+		<div class="row centered-form">
+			<div class="col-md-6 col-sm-offset-2 col-md-offset-2" style="float: none; margin: 0 auto;">
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h3 class="panel-title">Please sign up for using our service</h3>
