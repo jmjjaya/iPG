@@ -16,7 +16,11 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
-
+/**
+ * @author Tram
+ *
+ * 
+ */
 public class DetectObject {
 
     public JsonObject getDataFromAPI(String api, String accessToken, String imageUrl) throws IOException {

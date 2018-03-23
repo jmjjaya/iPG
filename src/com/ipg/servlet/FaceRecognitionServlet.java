@@ -21,6 +21,14 @@ import javax.servlet.http.HttpSession;
 import com.ipg.util.DetectObject;
 
 /**
+ * @author Tram
+ *
+ * 
+ */
+
+/**
+
+/**
  * Servlet implementation class FaceRecognitionServlet
  */
 @WebServlet("/FaceRecognitionServlet")
